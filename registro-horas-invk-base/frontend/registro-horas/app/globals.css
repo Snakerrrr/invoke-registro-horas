@@ -1,0 +1,500 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%; /* Blanco */
+    --foreground: 210 40% 12%; /* Texto más oscuro para mejor contraste */
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 40% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 40% 12%;
+
+    /* INVOKE Brand Colors - Optimizados para accesibilidad */
+    --primary: 210 70% 30%; /* INVOKE Deep Blue más oscuro para mejor contraste */
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 210 15% 94%; /* Fondo más claro con mejor contraste */
+    --secondary-foreground: 210 70% 25%; /* Texto más oscuro */
+
+    --muted: 210 15% 94%;
+    --muted-foreground: 210 30% 35%; /* Mejor contraste para texto secundario */
+
+    --accent: 340 80% 45%; /* INVOKE Magenta más oscuro para mejor contraste */
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 210 20% 85%; /* Bordes más visibles */
+    --input: 210 20% 85%;
+    --ring: 210 70% 30%;
+
+    --radius: 0.75rem;
+
+    /* INVOKE Brand Specific Colors - Accesibilidad mejorada */
+    --invoke-blue: 210 70% 30%; /* #1a4d7a - Más oscuro para mejor contraste */
+    --invoke-magenta: 340 80% 45%; /* #d1185a - Más oscuro para mejor contraste */
+    --invoke-dark-blue: 210 75% 22%; /* Versión aún más oscura */
+    --invoke-light-blue: 210 40% 92%; /* Fondo muy claro */
+    --invoke-gradient-start: 210 70% 30%;
+    --invoke-gradient-end: 340 80% 45%;
+
+    /* Colores específicos para el sidebar - Mejorados para accesibilidad */
+    --sidebar-background: 210 70% 30%; /* INVOKE Blue más oscuro */
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 0 0% 98%;
+    --sidebar-primary-foreground: 210 70% 30%;
+    --sidebar-accent: 340 80% 45%; /* INVOKE Magenta más oscuro */
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 210 70% 25%;
+    --sidebar-ring: 340 80% 45%;
+  }
+
+  .dark {
+    --background: 210 40% 6%; /* Fondo más oscuro */
+    --foreground: 0 0% 96%; /* Texto más claro */
+
+    --card: 210 40% 8%;
+    --card-foreground: 0 0% 96%;
+
+    --popover: 210 40% 8%;
+    --popover-foreground: 0 0% 96%;
+
+    --primary: 210 60% 55%; /* INVOKE Blue más claro para modo oscuro */
+    --primary-foreground: 210 40% 6%;
+
+    --secondary: 210 30% 12%;
+    --secondary-foreground: 0 0% 90%;
+
+    --muted: 210 30% 12%;
+    --muted-foreground: 210 15% 70%; /* Mejor contraste en modo oscuro */
+
+    --accent: 340 70% 65%; /* INVOKE Magenta más claro para modo oscuro */
+    --accent-foreground: 210 40% 6%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 96%;
+
+    --border: 210 30% 15%; /* Bordes más visibles en modo oscuro */
+    --input: 210 30% 15%;
+    --ring: 210 60% 55%;
+
+    /* INVOKE Brand Colors - Dark Mode con mejor contraste */
+    --invoke-blue: 210 60% 55%;
+    --invoke-magenta: 340 70% 65%;
+    --invoke-dark-blue: 210 65% 45%;
+    --invoke-light-blue: 210 40% 15%;
+    --invoke-gradient-start: 210 60% 55%;
+    --invoke-gradient-end: 340 70% 65%;
+
+    --sidebar-background: 210 50% 20%; /* Sidebar más claro en modo oscuro */
+    --sidebar-foreground: 0 0% 96%;
+    --sidebar-primary: 0 0% 96%;
+    --sidebar-primary-foreground: 210 50% 20%;
+    --sidebar-accent: 340 65% 60%;
+    --sidebar-accent-foreground: 0 0% 96%;
+    --sidebar-border: 210 30% 15%;
+    --sidebar-ring: 340 70% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer utilities {
+  .invoke-gradient {
+    background: linear-gradient(135deg, hsl(var(--invoke-gradient-start)) 0%, hsl(var(--invoke-gradient-end)) 100%);
+  }
+
+  .invoke-gradient-text {
+    background: linear-gradient(135deg, hsl(var(--invoke-blue)) 0%, hsl(var(--invoke-magenta)) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glass-effect {
+    backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(26, 77, 122, 0.05);
+    border: 1px solid rgba(26, 77, 122, 0.15);
+  }
+
+  .dark .glass-effect {
+    background-color: rgba(26, 77, 122, 0.1);
+    border: 1px solid rgba(209, 24, 90, 0.15);
+  }
+
+  .invoke-card {
+    background: linear-gradient(135deg, rgba(26, 77, 122, 0.05) 0%, rgba(209, 24, 90, 0.05) 100%);
+    border: 1px solid rgba(26, 77, 122, 0.2);
+  }
+
+  .dark .invoke-card {
+    background: linear-gradient(135deg, rgba(26, 77, 122, 0.1) 0%, rgba(209, 24, 90, 0.1) 100%);
+    border: 1px solid rgba(209, 24, 90, 0.3);
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Utilidades para los colores corporativos con mejor contraste */
+  .invoke-blue {
+    color: hsl(var(--invoke-blue));
+  }
+
+  .invoke-magenta {
+    color: hsl(var(--invoke-magenta));
+  }
+
+  .bg-invoke-blue {
+    background-color: hsl(var(--invoke-blue));
+  }
+
+  .bg-invoke-magenta {
+    background-color: hsl(var(--invoke-magenta));
+  }
+
+  .border-invoke-blue {
+    border-color: hsl(var(--invoke-blue));
+  }
+
+  .border-invoke-magenta {
+    border-color: hsl(var(--invoke-magenta));
+  }
+
+  /* Efectos hover con colores corporativos y mejor accesibilidad */
+  .hover-invoke-blue:hover {
+    background-color: hsl(var(--invoke-blue));
+    color: hsl(var(--primary-foreground));
+  }
+
+  .hover-invoke-magenta:hover {
+    background-color: hsl(var(--invoke-magenta));
+    color: hsl(var(--accent-foreground));
+  }
+
+  /* Estados de focus mejorados para accesibilidad */
+  .focus-invoke:focus {
+    outline: 2px solid hsl(var(--invoke-blue));
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px hsl(var(--background)), 0 0 0 4px hsl(var(--invoke-blue));
+  }
+
+  .focus-invoke-magenta:focus {
+    outline: 2px solid hsl(var(--invoke-magenta));
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px hsl(var(--background)), 0 0 0 4px hsl(var(--invoke-magenta));
+  }
+
+  /* Texto con mejor contraste */
+  .text-high-contrast {
+    color: hsl(210 40% 12%);
+  }
+
+  .dark .text-high-contrast {
+    color: hsl(0 0% 96%);
+  }
+
+  /* Enlaces con mejor accesibilidad */
+  .link-accessible {
+    color: hsl(var(--invoke-blue));
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    transition: text-decoration-color 0.2s ease;
+  }
+
+  .link-accessible:hover {
+    text-decoration-color: hsl(var(--invoke-blue));
+  }
+
+  .link-accessible:focus {
+    outline: 2px solid hsl(var(--invoke-blue));
+    outline-offset: 2px;
+    text-decoration-color: hsl(var(--invoke-blue));
+  }
+
+  .dark .link-accessible {
+    color: hsl(210 60% 55%);
+  }
+
+  .dark .link-accessible:hover,
+  .dark .link-accessible:focus {
+    text-decoration-color: hsl(210 60% 55%);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* INVOKE Brand Typography con mejor legibilidad */
+.invoke-title {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: hsl(var(--invoke-blue));
+}
+
+.invoke-subtitle {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: hsl(210 40% 12%);
+}
+
+.dark .invoke-subtitle {
+  color: hsl(0 0% 90%);
+}
+
+/* Estilos específicos para elementos interactivos con mejor accesibilidad */
+.invoke-button-primary {
+  background: linear-gradient(135deg, hsl(var(--invoke-blue)) 0%, hsl(var(--invoke-dark-blue)) 100%);
+  color: hsl(var(--primary-foreground));
+  border: 2px solid transparent;
+  transition: all 0.2s ease-in-out;
+  font-weight: 600;
+}
+
+.invoke-button-primary:hover {
+  background: linear-gradient(135deg, hsl(var(--invoke-dark-blue)) 0%, hsl(var(--invoke-blue)) 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(26, 77, 122, 0.3);
+}
+
+.invoke-button-primary:focus {
+  outline: 2px solid hsl(var(--invoke-blue));
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px hsl(var(--background)), 0 0 0 4px hsl(var(--invoke-blue));
+}
+
+.invoke-button-secondary {
+  background: linear-gradient(135deg, hsl(var(--invoke-magenta)) 0%, hsl(340 85% 40%) 100%);
+  color: hsl(var(--accent-foreground));
+  border: 2px solid transparent;
+  transition: all 0.2s ease-in-out;
+  font-weight: 600;
+}
+
+.invoke-button-secondary:hover {
+  background: linear-gradient(135deg, hsl(340 85% 40%) 0%, hsl(var(--invoke-magenta)) 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(209, 24, 90, 0.3);
+}
+
+.invoke-button-secondary:focus {
+  outline: 2px solid hsl(var(--invoke-magenta));
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px hsl(var(--background)), 0 0 0 4px hsl(var(--invoke-magenta));
+}
+
+/* Mejoras para formularios y accesibilidad */
+.form-input-accessible {
+  border: 2px solid hsl(var(--border));
+  transition: border-color 0.2s ease;
+}
+
+.form-input-accessible:focus {
+  border-color: hsl(var(--invoke-blue));
+  outline: none;
+  box-shadow: 0 0 0 2px hsl(var(--invoke-blue) / 0.2);
+}
+
+.form-input-accessible:invalid {
+  border-color: hsl(var(--destructive));
+}
+
+/* Estados de error con mejor contraste */
+.error-text {
+  color: hsl(0 70% 40%);
+  font-weight: 500;
+}
+
+.dark .error-text {
+  color: hsl(0 70% 60%);
+}
+
+/* Estados de éxito con mejor contraste */
+.success-text {
+  color: hsl(120 60% 30%);
+  font-weight: 500;
+}
+
+.dark .success-text {
+  color: hsl(120 60% 50%);
+}
+
+/* Indicadores de estado con mejor visibilidad */
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+.status-indicator::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-active::before {
+  background-color: hsl(120 60% 40%);
+}
+
+.status-inactive::before {
+  background-color: hsl(0 60% 50%);
+}
+
+.status-pending::before {
+  background-color: hsl(45 90% 50%);
+}
+
+/* Animaciones de entrada */
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Hover effects mejorados */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Loading states */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Custom styles for the login page */
+.invoke-3d-card {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.invoke-3d-card:hover {
+  transform: translateY(-5px) scale(1.01); /* Lift and slightly enlarge on hover */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15), 0 10px 10px rgba(0, 0, 0, 0.2), 0 5px 5px rgba(0, 0, 0, 0.25);
+}
+
+.dark .invoke-3d-card {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 6px 6px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.dark .invoke-3d-card:hover {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 10px 10px rgba(0, 0, 0, 0.5), 0 5px 5px rgba(0, 0, 0, 0.6);
+}
+
+.invoke-3d-logo {
+  box-shadow: 0 0 0 5px rgba(99, 102, 241, 0.2), /* Outer glow based on primary color */ 0 0 20px
+    rgba(99, 102, 241, 0.4), /* Stronger glow */ 0 10px 20px rgba(0, 0, 0, 0.3); /* Bottom shadow for lift */
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.invoke-3d-logo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 0 8px rgba(99, 102, 241, 0.3), 0 0 30px rgba(99, 102, 241, 0.6), 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Gradiente animado específico solo para el login */
+.animated-gradient-background {
+  background: linear-gradient(
+    -45deg,
+    #0f3a5c /* Azul oscuro */,
+    #a31247 /* Magenta oscuro */,
+    #0f3a5c /* Azul oscuro */,
+    #a31247 /* Magenta oscuro */
+  );
+  background-size: 400% 400%;
+  animation: gradient-animation 15s ease infinite;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

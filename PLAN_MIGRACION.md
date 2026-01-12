@@ -187,5 +187,4 @@ Intenta hacer Login y registrar una hora para validar la conexión completa (BD 
 
 ---
 
-**Versión del Plan:** 1.0  
-**Fecha de Creación:** 2024
+

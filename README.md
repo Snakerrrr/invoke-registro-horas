@@ -74,8 +74,10 @@ INVOKE es una aplicación web full-stack diseñada para gestionar el registro de
 - **Lucide React** - Iconos
 
 ### Infraestructura
-- **Docker** y **Docker Compose**
-- **pgAdmin** para gestión de base de datos
+- **Docker** y **Docker Compose** (desarrollo local)
+- **Supabase** - Base de datos PostgreSQL en la nube
+- **Azure** - Hosting del backend (producción)
+- **Vercel** - Hosting del frontend (producción)
 
 ## 📁 Estructura del Proyecto
 
@@ -250,12 +252,16 @@ http://localhost:3000
 
 #### Backend (.env)
 ```env
-DATABASE_URL=postgresql://usuario:contraseña@host:puerto/nombre_bd
+# Conexión a Supabase (formato de connection string de Supabase)
+DATABASE_URL=postgresql://postgres.proyecto:contraseña@host.supabase.co:5432/postgres
 JWT_SECRET=tu_secreto_jwt_muy_seguro_minimo_32_caracteres
+JWT_EXPIRES_IN=1d
 PORT=5000
 DAILY_GOAL_HOURS=8
 NODE_ENV=development
 ```
+
+**Nota:** La `DATABASE_URL` debe ser la cadena de conexión proporcionada por Supabase. Puedes encontrarla en el Dashboard de Supabase → Database → Settings → Connection string.
 
 #### Frontend (.env.local)
 ```env
@@ -264,13 +270,15 @@ NEXT_PUBLIC_BACKEND_URL=http://localhost:5000
 
 ### Base de Datos
 
-El sistema utiliza PostgreSQL con las siguientes tablas principales:
+El sistema utiliza **PostgreSQL** alojado en **Supabase** con las siguientes tablas principales:
 - `users` - Usuarios del sistema
 - `roles` - Roles (consultor, administrador)
 - `work_hours` - Registros de horas trabajadas
 - `parametros` - Catálogos (proyectos, tipos de horas, países, PMs)
 - `vacations` - Gestión de vacaciones
 - `attendance_remoto` - Asistencia remota
+
+**Nota:** Para migrar la base de datos a una nueva instancia de Supabase, consulta el archivo `PLAN_MIGRACION.md`.
 
 ## 📖 Uso
 
@@ -400,19 +408,26 @@ docker-compose logs -f
 
 ### Despliegue en Producción
 
-#### Backend (Azure/AWS/Heroku)
+#### Backend (Azure)
 
-1. Configurar variables de entorno en la plataforma
-2. Conectar a base de datos PostgreSQL
+1. Configurar variables de entorno en Azure Portal:
+   - `DATABASE_URL` - Cadena de conexión de Supabase
+   - `JWT_SECRET` - Secreto para tokens JWT
+   - `JWT_EXPIRES_IN` - Tiempo de expiración (ej: 1d)
+   - `NODE_ENV=production`
+2. Conectar a base de datos Supabase
 3. Desplegar aplicación Node.js
+4. Configurar CORS en `server.js` con la URL del frontend en producción
 
-#### Frontend (Vercel/Netlify)
+#### Frontend (Vercel)
 
-1. Conectar repositorio Git
+1. Conectar repositorio Git a Vercel
 2. Configurar variables de entorno:
-   - `NEXT_PUBLIC_BACKEND_URL` (URL del backend en producción)
+   - `NEXT_PUBLIC_BACKEND_URL` - URL del backend en producción (ej: `https://backend-invoke.azurewebsites.net`)
 3. Configurar build command: `pnpm build`
 4. Desplegar
+
+**Importante:** Asegúrate de que todas las URLs hardcodeadas en el código hayan sido reemplazadas por variables de entorno. Consulta `PLAN_MIGRACION.md` para más detalles.
 
 ### Variables de Entorno en Producción
 
@@ -477,6 +492,10 @@ Este proyecto es privado y propiedad de INVOKE.
 ## 👤 Autor
 
 **INVOKE Team**
+
+## 🔄 Migración
+
+Si necesitas migrar la base de datos de Supabase o actualizar configuraciones, consulta el archivo `PLAN_MIGRACION.md` que contiene instrucciones detalladas paso a paso.
 
 ## 📞 Soporte
 

@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/f7db2ee1-24c4-419c-bf0e-cfbed76e5188/resourceGroups/invoke_app/providers/Microsoft.Web/sites/backend-invoke",
+    "appService.deploySubpath": "backend"
+}
